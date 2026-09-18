@@ -5,19 +5,22 @@ def is_valid_sudoku(board):
     size = 9
     columns = defaultdict(set)
     rows = defaultdict(set)
-    square = defaultdict(set)
+    squares = defaultdict(set)
+
     for row in range(size):
         for col in range(size):
             cell = board[row][col]
+
             if cell == ".":
                 continue
 
-            if cell in columns[col] or cell in rows[row] or cell in square[(row // 3, col // 3)]:
+            if cell in columns[col] or cell in rows[row] or cell in squares[(row // 3, col // 3)]:
                 return False
 
-            square[(row // 3, col // 3)].add(cell)
+            squares[(row // 3, col // 3)].add(cell)
             columns[col].add(cell)
             rows[row].add(cell)
+
     return True
 
 
